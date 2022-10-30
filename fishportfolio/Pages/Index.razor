@@ -1,0 +1,22 @@
+﻿@page "/"
+
+@using fishportfolio.Pages.Components
+@inject NavigationManager NavigationManager
+
+<PageTitle>Index</PageTitle>
+@*Body*@
+
+<MudPaper Class="px-6 py-4 mx-6 mb-6" Elevation="2" MinWidth="60vw" MaxWidth="800px">
+    <Fishcrumbs />
+    <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.h1">Sample text</MudText>
+    <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">
+        Nice to meet you! I am an Information and Communications Technology (ICT in short) student from Poland 🇵🇱. I like to tinker with many different projects.
+        Feel free to explore my page in search for my completed projects and more info about me 🙂
+    </MudText>
+    <MudContainer MaxWidth="MaxWidth.ExtraSmall">
+        <MudImage Class="mt-2" Fluid="true" ObjectFit="ObjectFit.Fill" Elevation="2" Src="./images/placeholder-image.jpg" ObjectPosition="ObjectPosition.Center"></MudImage>
+        <MudText Class="mb-2" Color="Color.Secondary" Align="Align.Center" Typo="Typo.body2">Sample description.</MudText>
+    </MudContainer>
+    <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">That's a very neat seal picture, isn't it? 😉</MudText>
+</MudPaper>
+

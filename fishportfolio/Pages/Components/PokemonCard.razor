@@ -1,0 +1,20 @@
+﻿@using fishportfolio.Data
+<MudItem xs="12" sm="4">
+    <MudCard Outlined=true>
+        <MudImage Width="256" ObjectPosition="ObjectPosition.Center" Src=@PokemonData.Pokemon.Sprites.FrontDefault></MudImage>
+        <MudCardContent>
+            <MudText Class="fw-bold text-capitalize" Color="Color.Secondary" Typo="Typo.h4">#@PokemonData.Pokemon.Id @PokemonData.Pokemon.Name</MudText>
+            <MudText Class="text-capitalize" Color="Color.Secondary" Typo="Typo.h5">@String.Join(" | " ,PokemonData.Pokemon.Types.Select(x => x.Type.Name))</MudText>
+            <MudText Color="Color.Secondary" Typo="Typo.h5">@PokemonData.SpeciesCall.Genera.Where(x => x.Language.Name=="en").Select(x => x.Genus).FirstOrDefault()</MudText>
+            <MudText Class="text-wrap text-break" Color="Color.Secondary" Typo="Typo.h6">@PokemonData.SpeciesCall.FlavorTextEntries.Where(x => x.Language.Name=="en").Select(x => x.FlavorText).FirstOrDefault()</MudText>
+        </MudCardContent>
+        <MudCardActions>
+            <MudButton Variant="Variant.Text" Color="Color.Secondary" Href=@($"https://bulbapedia.bulbagarden.net/wiki/{PokemonData.Pokemon.Name}_(Pokemon)")>Learn More</MudButton>
+        </MudCardActions>
+    </MudCard>
+</MudItem>
+
+@code {
+    [Parameter]
+    public MyPokemon PokemonData { get; set; }
+}

@@ -1,0 +1,68 @@
+﻿@page "/pokemonoftheday"
+@using PokeApiNet
+@using fishportfolio.Data
+@using fishportfolio.Pages.Components
+@inject IJSRuntime JsRuntime
+@inject NavigationManager NavigationManager
+
+<PageTitle>Pokemon of the day</PageTitle>
+<MudPaper Class="px-6 py-4 mx-6 mb-6" Elevation="2" MinWidth="60vw" MaxWidth="800px">
+    <Fishcrumbs />
+    <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.h1">Pokemon of the day</MudText>
+    <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">@_date</MudText>
+    <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">Today's pokemon:</MudText>
+
+    <MudGrid Spacing="2" Justify="Justify.Center">
+        @foreach (MyPokemon pokemon in listOfPokemon)
+        {
+            <PokemonCard PokemonData="pokemon" />
+        }
+    </MudGrid>
+
+</MudPaper>
+
+@code {
+    private DateTime _date;
+    private DateTime _nextYear;
+
+    // private NamedApiResourceList<Pokemon>? listOfPokemon;
+    private List<MyPokemon> listOfPokemon = new List<MyPokemon>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+        //var i = Microsoft.AspNetCore.WebUtilities.QueryHelpers.ParseQuery(uri);
+        //_date = await JsRuntime.InvokeAsync<DateTime>("GetDateTime");
+        _date = DateTime.Now;
+        _date = _date.ToUniversalTime();
+        PokeApiClient pokeClient = new PokeApiClient();
+
+        var daysInTheYear = 365;
+        _nextYear = _date;
+
+        var pokemonIndex = _date.DayOfYear;
+        pokemonIndex = 10;  //  Remove this line
+
+        MyPokemon myPokemon = new MyPokemon();
+        do
+        {
+            try
+            {
+                myPokemon.Pokemon = await pokeClient.GetResourceAsync<Pokemon>(pokemonIndex);
+            }
+            catch (HttpRequestException ex) { myPokemon = null; }
+            if (myPokemon is not null)
+            {
+                myPokemon.SpeciesCall = await pokeClient.GetResourceAsync(myPokemon.Pokemon.Species);
+                listOfPokemon.Add(new MyPokemon(myPokemon));
+            }
+            _nextYear = _nextYear.AddYears(1);
+            if (DateTime.IsLeapYear(_nextYear.Year)) { daysInTheYear = 366; }
+            else { daysInTheYear = 365; }
+            pokemonIndex += daysInTheYear;
+        } while (myPokemon is not null);
+
+        await base.OnInitializedAsync();
+    }
+
+}
