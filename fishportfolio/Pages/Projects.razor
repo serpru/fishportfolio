@@ -1,8 +1,12 @@
 ﻿@page "/projects"
 
 @using MudBlazor.Services
-@implements IAsyncDisposable
 @using fishportfolio.Pages.Components
+@using fishportfolio.Data.ViewModel
+
+@implements IAsyncDisposable
+
+@inject IResizeService ResizeService
 
 <PageTitle>Projects</PageTitle>
 <MudContainer MaxWidth="MaxWidth.False" Class="ma-0 pa-0 d-flex flex-column justify-space-between">
@@ -14,11 +18,10 @@
         </MudText>
     </MudPaper>
     <MudDivider />
-    @*<MudText Class="my-2" Color="Color.Primary" Align="Align.Center" Typo="Typo.h1">UX/UI</MudText>*@
 
     <MudContainer MaxWidth="MaxWidth.Medium">
-        <MudTimeline TimelinePosition="@timelinePos">
-            @foreach (ProjectItem project in _projects)
+        <MudTimeline TimelinePosition="@_timelinePos">
+            @foreach (var project in _projects)
             {
                 <MudTimelineItem Size="Size.Medium" Color="Color.Tertiary">
                     <ItemDot>
@@ -44,7 +47,7 @@
                         </MudCard>
                     </ItemContent>
                     <ItemOpposite>
-                        <MudChip Color="Color.Primary" Variant="Variant.Outlined" DisableRipple=true>
+                        <MudChip Color="Color.Primary" Variant="Variant.Outlined" DisableRipple>
                             <MudText>@project.Date.ToShortDateString()</MudText>
                         </MudChip>
                     </ItemOpposite>
@@ -56,103 +59,24 @@
 
 @code
 {
-    public class ProjectItem
+    private List<ProjectViewModel> _projects = new List<ProjectViewModel>
     {
-        public DateTime Date { get; set; }
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public string ImageLink { get; set; }
-        public string Href { get; set; }
-        public Color Color { get; set; }
-        public bool IsDone { get; set; }
-
-        public ProjectItem()
-        {
-            Date = new DateTime(2022, 11, 2);
-            Title = "Default title";
-            Description = "Default description";
-            ImageLink = "images/placeholder-image.jpg";
-            Href = "/";
-            Color = Color.Secondary;
-            IsDone = true;
-        }
-
-        public ProjectItem(DateTime date, string title, string description, string imageLink, string href, Color color, bool isDone)
-        {
-            Date = date;
-            Title = title;
-            Description = description;
-            ImageLink = imageLink;
-            Href = href;
-            Color = color;
-            IsDone = isDone;
-        }
-    }
-
-    //public class ProjectChip
-    //{
-    //    public string Text { get; set; }
-    //    public ProjectCategory ProjectCategory { get; set; }
-    //    public string Color { get; set; }
-
-
-    //    public ProjectChip()
-    //    {
-    //        Text = "Sample text";
-    //        ProjectCategory = ProjectCategory.SampleCategory;
-    //        Color = projectCategoryDict[ProjectCategory.SampleCategory];
-    //    }
-    //}
-
-    //public enum ProjectCategory
-    //{
-    //    SampleCategory,
-    //    UIUX,
-    //    CSharp,
-    //    Python,
-    //    Job,
-
-    //}
-
-    //public static Dictionary<ProjectCategory, string> projectCategoryDict = new Dictionary<ProjectCategory, string>
-    //{
-    //    { ProjectCategory.SampleCategory, "#ff0000" },
-    //    { ProjectCategory.UIUX, "#f5bf42" },
-    //    { ProjectCategory.CSharp, "#1d9924"}
-    //};
-
-    private List<ProjectItem> _projects = new List<ProjectItem>
-    {
-        new ProjectItem(new DateTime(2021,10,21),
+        new ProjectViewModel(new DateTime(2021,10,21),
         "Tytuł", "Opis","/images/banner.jpg","/pokemonoftheday", Color.Secondary, false),
-        new ProjectItem(),
-        new ProjectItem(),
-        new ProjectItem(),
-        new ProjectItem(),
-        new ProjectItem(),
-        new ProjectItem(),
-        new ProjectItem(),
-        new ProjectItem(),
-        new ProjectItem(),
-        new ProjectItem()
+        new ProjectViewModel(),
+        new ProjectViewModel(),
+        new ProjectViewModel(),
+        new ProjectViewModel(),
+        new ProjectViewModel(),
+        new ProjectViewModel(),
+        new ProjectViewModel(),
+        new ProjectViewModel(),
+        new ProjectViewModel(),
+        new ProjectViewModel()
     };
 
-    private void EvaluateTimelinePosition(BrowserWindowSize size)
-    {
-        if (size.Width <= breakPointWidth)
-        {
-            timelinePos = TimelinePosition.Left;
-        }
-        else
-        {
-            timelinePos = TimelinePosition.Alternate;
-        }
-    }
-
-
-    [Inject] IResizeService ResizeService { get; set; }
-    private int breakPointWidth = 640;
-    TimelinePosition timelinePos = TimelinePosition.Alternate;
+    private int _breakPointWidth = 640;
+    private TimelinePosition _timelinePos = TimelinePosition.Alternate;
 
     private Guid _subscriptionId;
 
@@ -177,6 +101,9 @@
 
         await base.OnAfterRenderAsync(firstRender);
     }
+
+    private void EvaluateTimelinePosition(BrowserWindowSize size) =>
+    _timelinePos = (size.Width <= _breakPointWidth) ? TimelinePosition.Left : TimelinePosition.Alternate;
 
     public async ValueTask DisposeAsync() => await ResizeService.Unsubscribe(_subscriptionId);
 }
