@@ -1,5 +1,7 @@
 ﻿@page "/projects"
 
+@using MudBlazor.Services
+@implements IAsyncDisposable
 @using fishportfolio.Pages.Components
 
 <PageTitle>Projects</PageTitle>
@@ -12,98 +14,169 @@
         </MudText>
     </MudPaper>
     <MudDivider />
-    <MudText Class="my-2" Color="Color.Primary" Align="Align.Center" Typo="Typo.h1">UX/UI</MudText>
+    @*<MudText Class="my-2" Color="Color.Primary" Align="Align.Center" Typo="Typo.h1">UX/UI</MudText>*@
 
-
-
-    <MudContainer Class="my-3" MaxWidth="MaxWidth.Large">
-        <MudGrid Spacing="2" Justify="Justify.Center">
-            <MudItem Class="mx-4 px-0">
-                <MudCard>
-                    <MudCardMedia Image="images/placeholder-image.jpg" Height="200" />
-                    <MudCardContent>
-                        <MudText Color="Color.Secondary" Typo="Typo.h5">Old Paint</MudText>
-                        <MudText Color="Color.Secondary" Typo="Typo.body2">Old paint found on a stone house door.</MudText>
-                        <MudText Color="Color.Secondary" Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Text" Color="Color.Secondary" Href="/projectlogo">Learn More</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-            <MudItem Class="mx-4 px-0">
-                <MudCard>
-                    <MudCardMedia Image="images/placeholder-image.jpg" Height="200" />
-                    <MudCardContent>
-                        <MudText Color="Color.Secondary" Typo="Typo.h5">Old Paint</MudText>
-                        <MudText Color="Color.Secondary" Typo="Typo.body2">Old paint found on a stone house door.</MudText>
-                        <MudText Color="Color.Secondary" Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Text" Color="Color.Secondary">Learn More</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-            <MudItem Class="mx-4 px-0">
-                <MudCard>
-                    <MudCardMedia Image="images/placeholder-image.jpg" Height="200" />
-                    <MudCardContent>
-                        <MudText Color="Color.Secondary" Typo="Typo.h5">Old Paint</MudText>
-                        <MudText Color="Color.Secondary" Typo="Typo.body2">Old paint found on a stone house door.</MudText>
-                        <MudText Color="Color.Secondary" Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Text" Color="Color.Secondary">Learn More</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-        </MudGrid>
+    <MudContainer MaxWidth="MaxWidth.Medium">
+        <MudTimeline TimelinePosition="@timelinePos">
+            @foreach (ProjectItem project in _projects)
+            {
+                <MudTimelineItem Size="Size.Medium" Color="Color.Tertiary">
+                    <ItemDot>
+                        @if (project.IsDone)
+                        {
+                            <MudIcon Icon="@Icons.Material.Filled.Check"></MudIcon>
+                        }
+                    </ItemDot>
+                    <ItemContent>
+                        <MudCard Outlined>
+                            <MudCardMedia Image=@project.ImageLink Height="200" />
+                            <MudCardContent>
+                                <MudText Color="Color.Secondary" Typo="Typo.h5">@project.Title</MudText>
+                                <MudText Color="Color.Secondary" Typo="Typo.body2">@project.Description</MudText>
+                            </MudCardContent>
+                            <MudCardActions Class="justify-content-between">
+                                <MudButton Variant="Variant.Text" Color="Color.Secondary" Href=@project.Href>Learn More</MudButton>
+                                <div class="d-flex">
+                                    <MudChip Variant="Variant.Outlined" Color=@project.Color>Test</MudChip>
+                                    <MudChip Variant="Variant.Outlined" Color=@project.Color>Test2</MudChip>
+                                </div>
+                            </MudCardActions>
+                        </MudCard>
+                    </ItemContent>
+                    <ItemOpposite>
+                        <MudChip Color="Color.Primary" Variant="Variant.Outlined" DisableRipple=true>
+                            <MudText>@project.Date.ToShortDateString()</MudText>
+                        </MudChip>
+                    </ItemOpposite>
+                </MudTimelineItem>
+            }
+        </MudTimeline>
     </MudContainer>
-
-    <MudDivider />
-    <MudText Class="my-2" Color="Color.Primary" Align="Align.Center" Typo="Typo.h1">Programming</MudText>
-    <MudContainer Class="my-3" MaxWidth="MaxWidth.Large">
-        <MudGrid Spacing="2" Justify="Justify.Center">
-            <MudItem Class="mx-4 px-0">
-                <MudCard>
-                    <MudCardMedia Image="images/placeholder-image.jpg" Height="200" />
-                    <MudCardContent>
-                        <MudText Color="Color.Secondary" Typo="Typo.h5">Old Paint</MudText>
-                        <MudText Color="Color.Secondary" Typo="Typo.body2">Old paint found on a stone house door.</MudText>
-                        <MudText Color="Color.Secondary" Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Text" Color="Color.Secondary">Learn More</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-            <MudItem Class="mx-4 px-0">
-                <MudCard>
-                    <MudCardMedia Image="images/placeholder-image.jpg" Height="200" />
-                    <MudCardContent>
-                        <MudText Color="Color.Secondary" Typo="Typo.h5">Old Paint</MudText>
-                        <MudText Color="Color.Secondary" Typo="Typo.body2">Old paint found on a stone house door.</MudText>
-                        <MudText Color="Color.Secondary" Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Text" Color="Color.Secondary">Learn More</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-            <MudItem Class="mx-4 px-0">
-                <MudCard>
-                    <MudCardMedia Image="images/placeholder-image.jpg" Height="200" />
-                    <MudCardContent>
-                        <MudText Color="Color.Secondary" Typo="Typo.h5">Old Paint</MudText>
-                        <MudText Color="Color.Secondary" Typo="Typo.body2">Old paint found on a stone house door.</MudText>
-                        <MudText Color="Color.Secondary" Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudButton Variant="Variant.Text" Color="Color.Secondary">Learn More</MudButton>
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-        </MudGrid>
-    </MudContainer>
-
 </MudContainer>
+
+@code
+{
+    public class ProjectItem
+    {
+        public DateTime Date { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string ImageLink { get; set; }
+        public string Href { get; set; }
+        public Color Color { get; set; }
+        public bool IsDone { get; set; }
+
+        public ProjectItem()
+        {
+            Date = new DateTime(2022, 11, 2);
+            Title = "Default title";
+            Description = "Default description";
+            ImageLink = "images/placeholder-image.jpg";
+            Href = "/";
+            Color = Color.Secondary;
+            IsDone = true;
+        }
+
+        public ProjectItem(DateTime date, string title, string description, string imageLink, string href, Color color, bool isDone)
+        {
+            Date = date;
+            Title = title;
+            Description = description;
+            ImageLink = imageLink;
+            Href = href;
+            Color = color;
+            IsDone = isDone;
+        }
+    }
+
+    //public class ProjectChip
+    //{
+    //    public string Text { get; set; }
+    //    public ProjectCategory ProjectCategory { get; set; }
+    //    public string Color { get; set; }
+
+
+    //    public ProjectChip()
+    //    {
+    //        Text = "Sample text";
+    //        ProjectCategory = ProjectCategory.SampleCategory;
+    //        Color = projectCategoryDict[ProjectCategory.SampleCategory];
+    //    }
+    //}
+
+    //public enum ProjectCategory
+    //{
+    //    SampleCategory,
+    //    UIUX,
+    //    CSharp,
+    //    Python,
+    //    Job,
+
+    //}
+
+    //public static Dictionary<ProjectCategory, string> projectCategoryDict = new Dictionary<ProjectCategory, string>
+    //{
+    //    { ProjectCategory.SampleCategory, "#ff0000" },
+    //    { ProjectCategory.UIUX, "#f5bf42" },
+    //    { ProjectCategory.CSharp, "#1d9924"}
+    //};
+
+    private List<ProjectItem> _projects = new List<ProjectItem>
+    {
+        new ProjectItem(new DateTime(2021,10,21),
+        "Tytuł", "Opis","/images/banner.jpg","/pokemonoftheday", Color.Secondary, false),
+        new ProjectItem(),
+        new ProjectItem(),
+        new ProjectItem(),
+        new ProjectItem(),
+        new ProjectItem(),
+        new ProjectItem(),
+        new ProjectItem(),
+        new ProjectItem(),
+        new ProjectItem(),
+        new ProjectItem()
+    };
+
+    private void EvaluateTimelinePosition(BrowserWindowSize size)
+    {
+        if (size.Width <= breakPointWidth)
+        {
+            timelinePos = TimelinePosition.Left;
+        }
+        else
+        {
+            timelinePos = TimelinePosition.Alternate;
+        }
+    }
+
+
+    [Inject] IResizeService ResizeService { get; set; }
+    private int breakPointWidth = 640;
+    TimelinePosition timelinePos = TimelinePosition.Alternate;
+
+    private Guid _subscriptionId;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            _subscriptionId = await ResizeService.Subscribe((size) =>
+            {
+                EvaluateTimelinePosition(size);
+                InvokeAsync(StateHasChanged);
+            }, new ResizeOptions
+                {
+                    ReportRate = 100,
+                    NotifyOnBreakpointOnly = false,
+                });
+
+            var size = await ResizeService.GetBrowserWindowSize();
+            EvaluateTimelinePosition(size);
+            StateHasChanged();
+        }
+
+        await base.OnAfterRenderAsync(firstRender);
+    }
+
+    public async ValueTask DisposeAsync() => await ResizeService.Unsubscribe(_subscriptionId);
+}

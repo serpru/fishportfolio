@@ -8,7 +8,7 @@ namespace fishportfolio.Data
         {
             Palette.Primary = "#f4faffff";
             Palette.Secondary = "#061713";
-            Palette.Tertiary = "#4f646f";
+            Palette.Tertiary = "#3aba9d";
             Palette.Background = "#3aba9d";
             Palette.AppbarBackground = "#061713";
             Palette.DrawerText = "#e6ad87";
