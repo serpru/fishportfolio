@@ -11,6 +11,7 @@ namespace fishportfolio.Data.ViewModel
         public string Href { get; set; }
         public Color Color { get; set; }
         public bool IsDone { get; set; }
+        public List<String> Chips { get; set; }
 
 
 
@@ -23,9 +24,10 @@ namespace fishportfolio.Data.ViewModel
             Href = "/";
             Color = Color.Secondary;
             IsDone = true;
+            Chips = new List<String>{ "Chip1", "Chip2" };
         }
 
-        public ProjectViewModel(DateTime date, string title, string description, string imageLink, string href, Color color, bool isDone)
+        public ProjectViewModel(DateTime date, string title, string description, string imageLink, string href, Color color, bool isDone, List<String> chips)
         {
             Date = date;
             Title = title;
@@ -34,6 +36,7 @@ namespace fishportfolio.Data.ViewModel
             Href = href;
             Color = color;
             IsDone = isDone;
+            Chips = chips;
         }
     }
 }

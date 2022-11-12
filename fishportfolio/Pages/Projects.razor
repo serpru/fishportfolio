@@ -10,16 +10,17 @@
 
 <PageTitle>Projects</PageTitle>
 <MudContainer MaxWidth="MaxWidth.False" Class="ma-0 pa-0 d-flex flex-column justify-space-between">
-    <MudPaper Class="px-6 py-4 mx-6 mb-6 align-self-center" Elevation="2" MinWidth="60vw" MaxWidth="800px">
+    <MudPaper Class="px-6 py-4 mx-6 mb-3 align-self-center" Elevation="2" MinWidth="60vw" MaxWidth="800px">
         <Fishcrumbs />
         <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.h1">Sample text</MudText>
         <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">
             Here you can see my projects blablabla
         </MudText>
     </MudPaper>
-    <MudDivider />
 
-    <MudContainer MaxWidth="MaxWidth.Medium">
+    <MudContainer MaxWidth="MaxWidth.Medium" Class="my-3 d-flex flex-column">
+
+        <MudDivider />
         <MudTimeline TimelinePosition="@_timelinePos">
             @foreach (var project in _projects)
             {
@@ -40,8 +41,10 @@
                             <MudCardActions Class="justify-content-between">
                                 <MudButton Variant="Variant.Text" Color="Color.Secondary" Href=@project.Href>Learn More</MudButton>
                                 <div class="d-flex">
-                                    <MudChip Variant="Variant.Outlined" Color=@project.Color>Test</MudChip>
-                                    <MudChip Variant="Variant.Outlined" Color=@project.Color>Test2</MudChip>
+                                    @foreach (var chip in project.Chips)
+                                    {
+                                        <MudChip Variant="Variant.Outlined" Color=@project.Color>@chip</MudChip>
+                                    }
                                 </div>
                             </MudCardActions>
                         </MudCard>
@@ -55,6 +58,7 @@
             }
         </MudTimeline>
     </MudContainer>
+
 </MudContainer>
 
 @code
@@ -62,7 +66,7 @@
     private List<ProjectViewModel> _projects = new List<ProjectViewModel>
     {
         new ProjectViewModel(new DateTime(2021,10,21),
-        "Tytuł", "Opis","/images/banner.jpg","/pokemonoftheday", Color.Secondary, false),
+        "Tytuł", "Opis","/images/banner.jpg","/pokemonoftheday", Color.Secondary, false, new List<String>{"C#","Python"}),
         new ProjectViewModel(),
         new ProjectViewModel(),
         new ProjectViewModel(),
