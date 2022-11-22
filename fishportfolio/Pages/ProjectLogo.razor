@@ -1,14 +1,34 @@
-﻿@page "/projectlogo"
+﻿@page "/projects/projectlogo"
 
 <PageTitle>Projects</PageTitle>
 <MudContainer MaxWidth="MaxWidth.False" Class="ma-0 pa-0 d-flex flex-column justify-space-between">
     <MudPaper Class="px-6 py-4 mx-6 mb-6 align-self-center" Elevation="2" MinWidth="60vw" MaxWidth="800px">
         <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.h1">Sample text</MudText>
-        <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">
-            Here you can see my projects blablabla
-        </MudText>
-    </MudPaper>
-    <MudDivider />
-    <MudText Class="my-2" Color="Color.Primary" Align="Align.Center" Typo="Typo.h1">UX/UI</MudText>
+        <div>
+            <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.h2">Awesome section title</MudText>
+            <MudContainer Class="pa-0 d-flex" MaxWidth="MaxWidth.Medium">
+                <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">
+                    This is some beautifully written sample text. Bla bla bla. My projects are super cool, you should definitely check
+                    these out.
+                </MudText>
+                <MudContainer>
+                    <MudImage Fluid="true" ObjectFit="ObjectFit.Fill" Elevation="2" Src="./images/placeholder-image.jpg" ObjectPosition="ObjectPosition.Center"></MudImage>
+                    <MudText Color="Color.Secondary" Align="Align.Center" Typo="Typo.h2">Awesome section title</MudText>
+                </MudContainer>
+            </MudContainer>
+        </div>
 
+        <div>
+            <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.h2">Awesome section title</MudText>
+            <MudContainer Class="pa-0 d-flex" MaxWidth="MaxWidth.Medium">
+                <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">
+                    This is some beautifully written sample text. Bla bla bla. My projects are super cool, you should definitely check
+                    these out.
+                </MudText>
+                <MudContainer>
+                    <MudImage Fluid="true" ObjectFit="ObjectFit.Fill" Elevation="2" Src="./images/placeholder-image.jpg" ObjectPosition="ObjectPosition.Center"></MudImage>
+                </MudContainer>
+            </MudContainer>
+        </div>
+    </MudPaper>
 </MudContainer>
