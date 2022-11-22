@@ -19,9 +19,13 @@
         <MudNavMenu>
             @foreach (var navlink in _items)
             {
-                <MudNavLink Icon="@navlink.Icon" Href="@navlink.Href">@navlink.Text</MudNavLink>
+                <MudNavLink Icon="@navlink.Icon" Href="@navlink.Href" Disabled=@navlink.Disabled>@navlink.Text</MudNavLink>
                 <MudDivider/>
             }
+        <MudNavGroup Title="Settings" Expanded="true">
+            <MudNavLink Href="/users">Users</MudNavLink>
+            <MudNavLink Href="/security">Security</MudNavLink>
+        </MudNavGroup>
         </MudNavMenu>
     </MudDrawer>
 
@@ -92,12 +96,13 @@
         _drawerOpen = !_drawerOpen;
     }
 
+    //  Items visible in NavBar menu
     private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
     {
         new BreadcrumbItem("Home", href: "/", icon: Icons.Material.Filled.Home),
         new BreadcrumbItem("Projects", href: "/projects/", icon: Icons.Filled.AutoAwesomeMosaic),
-        new BreadcrumbItem("Pokemon of the day", href: "/pokemonoftheday/", disabled: true, icon: Icons.Filled.CatchingPokemon),
-        new BreadcrumbItem("Contact", href: "/counter/", icon: Icons.Filled.Email),
+        new BreadcrumbItem("Pokemon of the day", href: "/pokemonoftheday/", icon: Icons.Filled.CatchingPokemon),
+        new BreadcrumbItem("Contact", href: "/contact/", icon: Icons.Filled.Email, disabled:true),
         new BreadcrumbItem("Test", href: "/test/", icon: Icons.Filled.Accessible),
         new BreadcrumbItem("Foka", href: "/test/foka/", icon: Icons.Filled.AirlineSeatFlat)
     };
