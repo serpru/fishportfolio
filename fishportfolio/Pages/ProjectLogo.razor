@@ -1,34 +1,55 @@
 ﻿@page "/projects/projectlogo"
+@using fishportfolio.Pages.Components
 
 <PageTitle>Projects</PageTitle>
 <MudContainer MaxWidth="MaxWidth.False" Class="ma-0 pa-0 d-flex flex-column justify-space-between">
-    <MudPaper Class="px-6 py-4 mx-6 mb-6 align-self-center" Elevation="2" MinWidth="60vw" MaxWidth="800px">
-        <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.h1">Sample text</MudText>
-        <div>
-            <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.h2">Awesome section title</MudText>
-            <MudContainer Class="pa-0 d-flex" MaxWidth="MaxWidth.Medium">
-                <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">
-                    This is some beautifully written sample text. Bla bla bla. My projects are super cool, you should definitely check
-                    these out.
-                </MudText>
-                <MudContainer>
-                    <MudImage Fluid="true" ObjectFit="ObjectFit.Fill" Elevation="2" Src="./images/placeholder-image.jpg" ObjectPosition="ObjectPosition.Center"></MudImage>
-                    <MudText Color="Color.Secondary" Align="Align.Center" Typo="Typo.h2">Awesome section title</MudText>
-                </MudContainer>
-            </MudContainer>
-        </div>
+    <MudPaper Class="px-8 py-4 mx-6 mb-6 align-self-center" Elevation="2" MinWidth="60vw" MaxWidth="800px">
+        <Fishcrumbs />
+        <MudText Class="ma-2" Color="Color.Secondary" Align="Align.Left" Typo="Typo.h1"><b>Logo project</b></MudText>
+        <MudText Class="ma-2" Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">
+            I needed a logo for myself to use on various projects of mine (including this site), so I designed one!
+        </MudText>
+        <MudDivider Style="background-color:#3aba9d; height:2px; opacity:0.7"></MudDivider>
 
-        <div>
-            <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.h2">Awesome section title</MudText>
-            <MudContainer Class="pa-0 d-flex" MaxWidth="MaxWidth.Medium">
-                <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">
-                    This is some beautifully written sample text. Bla bla bla. My projects are super cool, you should definitely check
-                    these out.
+        <MudGrid Spacing="1" Justify="Justify.Center">
+            <MudItem xs="12" sm="12">
+                <MudText Class="pa-0 ma-2" Color="Color.Secondary" Align="Align.Left" Typo="Typo.h2"><b>Getting started</b></MudText>
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudText Class="pa-0 mx-2" Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">
+                    First, I took a pencil and a sheet of paper and scribbled as many logo ideas as I could think of.
+                    I let my mind go wild with designs, no matter how silly looking. This resulted in several designs I could compare and pick their best features to mold into one awesome logo 😃
                 </MudText>
-                <MudContainer>
-                    <MudImage Fluid="true" ObjectFit="ObjectFit.Fill" Elevation="2" Src="./images/placeholder-image.jpg" ObjectPosition="ObjectPosition.Center"></MudImage>
+            </MudItem>
+            <MudItem xs="12" sm="6">
+                <MudContainer Class="pa-0 ma-0" MaxWidth="MaxWidth.False">
+                    <MudImage Class="pa-0 ma-0" Fluid="true" ObjectFit="ObjectFit.Fill" Elevation="2" Src="./images/projectlogo/logo_draft_1.jpg" ObjectPosition="ObjectPosition.Center"></MudImage>
+                    <MudText Class="d-flex justify-center" Color="Color.Secondary" Align="Align.Center" Typo="Typo.caption">This caption centers! 🥰</MudText>
                 </MudContainer>
-            </MudContainer>
-        </div>
+            </MudItem>
+
+
+
+
+
+
+
+            <MudItem Class="pa-0" xs="12" sm="12">
+                <MudText Class="pa-0 ma-2" Color="Color.Secondary" Align="Align.Right" Typo="Typo.h2"><b>Choosing the winner</b></MudText>
+            </MudItem>
+            <MudItem Class="pa-0" xs="12" sm="6">
+                <MudContainer Class="pa-0 ma-2">
+                    <MudImage Class="pa-0" Fluid ObjectFit="ObjectFit.Fill" Elevation="2" Src="./images/projectlogo/logo_draft_2.jpg" ObjectPosition="ObjectPosition.Center"></MudImage>
+                    <MudText Class="d-flex justify-center" Color="Color.Secondary" Align="Align.Center" Typo="Typo.caption">This caption centers! 🥰</MudText>
+                </MudContainer>
+            </MudItem>
+            <MudItem Class="pa-0" xs="12" sm="6">
+                <MudContainer Class="pa-0 ma-0">
+                    <MudText Class="pa-0 ma-2" Color="Color.Secondary" Align="Align.Right" Typo="Typo.body1">
+                        I really liked the swirly seal one, so I decided to improve on it. I was satisfied with the final draft.
+                    </MudText>
+                </MudContainer>
+            </MudItem>
+        </MudGrid>
     </MudPaper>
 </MudContainer>

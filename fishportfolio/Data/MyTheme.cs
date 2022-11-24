@@ -17,10 +17,10 @@ namespace fishportfolio.Data
             Palette.Divider = "#f4faffff";
             Palette.TextPrimary = "#535657";
             Palette.TextSecondary = "#42f5f2";
-            Palette.TextDisabled = "#42f5f2";
+            Palette.TextDisabled = "#3aba9d";
             Palette.ActionDisabled = "#8e9499";
             Typography.H1.FontSize = "2rem";
-            Typography.H2.FontSize = "1.7rem";
+            Typography.H2.FontSize = "1.3rem";
             
             Typography.H4.FontSize = "1.2rem";
             Typography.H5.FontSize = "1rem";
