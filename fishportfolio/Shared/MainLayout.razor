@@ -16,10 +16,10 @@
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         @*NavMenu*@
-        <MudNavMenu>
+        <MudNavMenu Color="Color.Secondary">
             @foreach (var navlink in _items)
             {
-                <MudNavLink Icon="@navlink.Icon" Href="@navlink.Href">@navlink.Text</MudNavLink>
+                <MudNavLink Match="NavLinkMatch.All" Icon="@navlink.Icon" Href="@navlink.Href">@navlink.Text</MudNavLink>
                 <MudDivider/>
             }
         </MudNavMenu>
@@ -34,12 +34,12 @@
             </MudPaper>
         </div>
 
-        <MudText Class="my-2" Color="Color.Primary" Align="Align.Center" Typo="Typo.h1">Greetings, traveler!</MudText>
+        <MudText Class="my-2" Color="Color.Secondary" Align="Align.Center" Typo="Typo.h1">Greetings, traveler!</MudText>
 
         @*This should be only visible on desktop*@
         <MudHidden Breakpoint="Breakpoint.MdAndDown">
             <MudContainer Class="mb-3 d-flex justify-content-center  gap-4">
-                <MudButtonGroup Color="Color.Primary" Variant="Variant.Text">
+                <MudButtonGroup Color="Color.Secondary" Variant="Variant.Text">
                     <MudButton StartIcon="@Icons.Material.Filled.Home">Home</MudButton>
                     <MudButton StartIcon="@Icons.Filled.AutoAwesomeMosaic">Projects</MudButton>
                     <MudButton StartIcon="@Icons.Filled.Email">Contact</MudButton>
@@ -56,7 +56,7 @@
             <MudContainer Class="ma-0 pa-0" MaxWidth="MaxWidth.False">
                 <MudDivider />
                 <MudContainer Fixed=true>
-                    <MudText Color="Color.Primary" Align="Align.Center" Typo="Typo.body2">Copyright XOXO</MudText>
+                    <MudText Color="Color.Secondary" Align="Align.Center" Typo="Typo.body2">Copyright XOXO</MudText>
                 </MudContainer>
             </MudContainer>
         </MudContainer>

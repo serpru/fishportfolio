@@ -22,7 +22,7 @@ namespace fishportfolio.Data.ViewModel
             Description = "Default description";
             ImageLink = "images/placeholder-image.jpg";
             Href = "/";
-            Color = Color.Secondary;
+            Color = Color.Primary;
             IsDone = true;
             Chips = new List<String>{ "Chip1", "Chip2" };
         }
