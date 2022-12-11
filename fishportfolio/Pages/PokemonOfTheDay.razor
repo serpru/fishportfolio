@@ -13,17 +13,73 @@
     <MudText Color="Color.Secondary" Align="Align.Left" Typo="Typo.body1">Today's pokemon:</MudText>
 
     <MudGrid Spacing="2" Justify="Justify.Center">
-        @foreach (MyPokemon pokemon in listOfPokemon)
+        @if (isContentLoaded)
         {
-            <PokemonCard PokemonData="pokemon" />
+            @foreach (MyPokemon pokemon in listOfPokemon)
+            {
+                <PokemonCard PokemonData="pokemon" />
+            }
+        }
+        else
+        {
+
+            <MudItem xs="12" sm="4">
+                <MudCard>
+                    <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
+                    <MudCardContent>
+                        <MudSkeleton Width="60%" Height="32px;" />
+                        <MudSkeleton Width="25%" Height="24px;" />
+                        <MudSkeleton Width="50%" Height="24px;" />
+                        <MudSkeleton Width="80%" />
+                        <MudSkeleton Width="100%" />
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudSkeleton Width="105px" Height="40px" Class="ml-2" />
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+            <MudItem xs="12" sm="4">
+                <MudCard>
+                    <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
+                    <MudCardContent>
+                        <MudSkeleton Width="60%" Height="32px;" />
+                        <MudSkeleton Width="25%" Height="24px;" />
+                        <MudSkeleton Width="50%" Height="24px;" />
+                        <MudSkeleton Width="80%" />
+                        <MudSkeleton Width="100%" />
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudSkeleton Width="105px" Height="40px" Class="ml-2" />
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+            <MudItem xs="12" sm="4">
+                <MudCard>
+                    <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
+                    <MudCardContent>
+                        <MudSkeleton Width="60%" Height="32px;" />
+                        <MudSkeleton Width="25%" Height="24px;" />
+                        <MudSkeleton Width="50%" Height="24px;" />
+                        <MudSkeleton Width="80%" />
+                        <MudSkeleton Width="100%" />
+                    </MudCardContent>
+                    <MudCardActions>
+                        <MudSkeleton Width="105px" Height="40px" Class="ml-2" />
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
         }
     </MudGrid>
+
+
 
 </MudPaper>
 
 @code {
     private DateTime _date;
     private DateTime _nextYear;
+
+    bool isContentLoaded = false;
 
     // private NamedApiResourceList<Pokemon>? listOfPokemon;
     private List<MyPokemon> listOfPokemon = new List<MyPokemon>();
@@ -62,6 +118,7 @@
             pokemonIndex += daysInTheYear;
         } while (myPokemon is not null);
 
+        isContentLoaded = true;
         await base.OnInitializedAsync();
     }
 
