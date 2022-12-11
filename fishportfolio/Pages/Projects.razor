@@ -11,17 +11,23 @@
 
 <PageTitle>Projects</PageTitle>
 <MudContainer MaxWidth="MaxWidth.False" Class="ma-0 pa-0 d-flex flex-column justify-space-between">
-    <MudPaper Class="px-6 py-4 mx-6 mb-3 align-self-center" Elevation="2" MinWidth="60vw" MaxWidth="800px">
-        <Fishcrumbs />
-        <MudText Color="Color.Primary" Align="Align.Left" Typo="Typo.h1">Projects</MudText>
-        <MudText Color="Color.Primary" Align="Align.Left" Typo="Typo.body1">
-            Below you can see my collection of personal projects that I made.
-        </MudText>
-    </MudPaper>
 
-    <MudContainer MaxWidth="MaxWidth.Medium" Class="my-3 d-flex flex-column">
 
-        <MudDivider />
+    <MudContainer MaxWidth="MaxWidth.Large" Class="my-3 d-flex flex-column">
+
+        <MudContainer MaxWidth="MaxWidth.Medium">
+
+            <MudPaper Class="px-6 py-4 mb-3" Elevation="2" MinWidth="50vw">
+                <Fishcrumbs />
+                <MudText Color="Color.Primary" Align="Align.Left" Typo="Typo.h1">Projects</MudText>
+                <MudText Color="Color.Primary" Align="Align.Left" Typo="Typo.body1">
+                    Below you can see my collection of personal projects that I made.
+                </MudText>
+            </MudPaper>
+
+            <MudDivider />
+        </MudContainer>
+        
 
         <MudContainer MaxWidth="MaxWidth.False" Class="my-3 d-flex justify-content-end">
             <MudContainer MaxWidth="MaxWidth.ExtraSmall">
@@ -38,145 +44,80 @@
 
         @if (isTimeline)
         {
-            Snackbar.Add("true");
-            <MudTimeline TimelinePosition="@_timelinePos">
-                @foreach (var project in _projects)
-                {
-                    <MudTimelineItem Size="Size.Medium" Color="Color.Tertiary">
-                        <ItemDot>
-                            @if (project.IsDone)
-                            {
-                                <MudIcon Icon="@Icons.Material.Filled.Check"></MudIcon>
-                            }
-                        </ItemDot>
-                        <ItemContent>
-                            <MudCard Outlined>
-                                <MudCardMedia Image=@project.ImageLink Height="200" />
-                                <MudCardContent>
-                                    <MudText Color="Color.Primary" Typo="Typo.h5">@project.Title</MudText>
-                                    <MudText Color="Color.Primary" Typo="Typo.body2">@project.Description</MudText>
-                                </MudCardContent>
-                                <MudCardActions Class="justify-content-between">
-                                    <MudButton Variant="Variant.Text" Color="Color.Primary" Href=@project.Href>Learn More</MudButton>
-                                    <div class="d-flex">
-                                        @foreach (var chip in project.Chips)
-                                        {
-                                            <MudChip Variant="Variant.Outlined" Color=@project.Color>@chip</MudChip>
-                                        }
-                                    </div>
-                                </MudCardActions>
-                            </MudCard>
-                        </ItemContent>
-                        <ItemOpposite>
-                            <MudChip Color="Color.Secondary" Variant="Variant.Outlined" DisableRipple>
-                                <MudText>@project.Date.ToShortDateString()</MudText>
-                            </MudChip>
-                        </ItemOpposite>
-                    </MudTimelineItem>
-                }
-            </MudTimeline>
+            <MudContainer MaxWidth="MaxWidth.Medium" Class="my-3">
+                <MudTimeline TimelinePosition="@_timelinePos">
+                    @foreach (var project in _projects)
+                    {
+                        <MudTimelineItem Size="Size.Medium" Color="Color.Tertiary">
+                            <ItemDot>
+                                @if (project.IsDone)
+                                {
+                                    <MudIcon Icon="@Icons.Material.Filled.Check"></MudIcon>
+                                }
+                            </ItemDot>
+                            <ItemContent>
+                                <MudCard Outlined>
+                                    <MudCardMedia Image=@project.ImageLink Height="200" />
+                                    <MudCardContent>
+                                        <MudText Color="Color.Primary" Typo="Typo.h5">@project.Title</MudText>
+                                        <MudText Color="Color.Primary" Typo="Typo.body2">@project.Description</MudText>
+                                    </MudCardContent>
+                                    <MudCardActions Class="justify-content-between">
+                                        <MudButton Variant="Variant.Text" Color="Color.Primary" Href=@project.Href>Learn More</MudButton>
+                                        <div class="d-flex">
+                                            @foreach (var chip in project.Chips)
+                                            {
+                                                <MudChip Variant="Variant.Outlined" Color=@project.Color>@chip</MudChip>
+                                            }
+                                        </div>
+                                    </MudCardActions>
+                                </MudCard>
+                            </ItemContent>
+                            <ItemOpposite>
+                                <MudChip Color="Color.Secondary" Variant="Variant.Outlined" DisableRipple>
+                                    @if (@project.IsDone)
+                                    {
+                                        <MudText>@project.Date.ToShortDateString()</MudText>
+                                    }
+                                    else
+                                    {
+                                        <MudText>In progress!</MudText>
+                                    }
+
+                                </MudChip>
+                            </ItemOpposite>
+                        </MudTimelineItem>
+                    }
+                </MudTimeline>
+            </MudContainer>
         }
         else
         {
-            Snackbar.Add("false");
-            <MudText>False</MudText>
-
-            <MudText Class="my-2" Color="Color.Primary" Align="Align.Center" Typo="Typo.h1">UX/UI</MudText>
-
-
-
-            <MudContainer Class="my-3" MaxWidth="MaxWidth.Large">
-                <MudGrid Spacing="2" Justify="Justify.Center">
-                    <MudItem Class="mx-4 px-0">
-                        <MudCard>
-                            <MudCardMedia Image="images/placeholder-image.jpg" Height="200" />
+            <MudGrid Spacing="2" Justify="Justify.Center">
+                @foreach (var project in _projects)
+                {
+                    <MudItem Class="mx-4 px-0" xs="12" sm="3">
+                        <MudCard Outlined>
+                            <MudCardMedia Image=@project.ImageLink Height="200" />
                             <MudCardContent>
-                                <MudText Color="Color.Primary" Typo="Typo.h5">Old Paint</MudText>
-                                <MudText Color="Color.Primary" Typo="Typo.body2">Old paint found on a stone house door.</MudText>
-                                <MudText Color="Color.Primary" Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
+                                <MudText Color="Color.Primary" Typo="Typo.h5">@project.Title</MudText>
+                                <MudText Color="Color.Primary" Typo="Typo.body2">@project.Description</MudText>
                             </MudCardContent>
-                            <MudCardActions>
-                                <MudButton Variant="Variant.Text" Color="Color.Primary" Href="/projectlogo">Learn More</MudButton>
+                            <MudCardActions Class="justify-content-between">
+                                <MudButton Variant="Variant.Text" Color="Color.Primary" Href=@project.Href>Learn More</MudButton>
+                                <div class="d-flex">
+                                    @foreach (var chip in project.Chips)
+                                    {
+                                        <MudChip Variant="Variant.Outlined" Color=@project.Color>@chip</MudChip>
+                                    }
+                                </div>
                             </MudCardActions>
                         </MudCard>
                     </MudItem>
-                    <MudItem Class="mx-4 px-0">
-                        <MudCard>
-                            <MudCardMedia Image="images/placeholder-image.jpg" Height="200" />
-                            <MudCardContent>
-                                <MudText Color="Color.Primary" Typo="Typo.h5">Old Paint</MudText>
-                                <MudText Color="Color.Primary" Typo="Typo.body2">Old paint found on a stone house door.</MudText>
-                                <MudText Color="Color.Primary" Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
-                            </MudCardContent>
-                            <MudCardActions>
-                                <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
-                            </MudCardActions>
-                        </MudCard>
-                    </MudItem>
-                    <MudItem Class="mx-4 px-0">
-                        <MudCard>
-                            <MudCardMedia Image="images/placeholder-image.jpg" Height="200" />
-                            <MudCardContent>
-                                <MudText Color="Color.Primary" Typo="Typo.h5">Old Paint</MudText>
-                                <MudText Color="Color.Primary" Typo="Typo.body2">Old paint found on a stone house door.</MudText>
-                                <MudText Color="Color.Primary" Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
-                            </MudCardContent>
-                            <MudCardActions>
-                                <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
-                            </MudCardActions>
-                        </MudCard>
-                    </MudItem>
-                </MudGrid>
-            </MudContainer>
-
+                }
+            </MudGrid>
             <MudDivider />
-            <MudText Class="my-2" Color="Color.Primary" Align="Align.Center" Typo="Typo.h1">Programming</MudText>
-            <MudContainer Class="my-3" MaxWidth="MaxWidth.Large">
-                <MudGrid Spacing="2" Justify="Justify.Center">
-                    <MudItem Class="mx-4 px-0">
-                        <MudCard>
-                            <MudCardMedia Image="images/placeholder-image.jpg" Height="200" />
-                            <MudCardContent>
-                                <MudText Color="Color.Primary" Typo="Typo.h5">Old Paint</MudText>
-                                <MudText Color="Color.Primary" Typo="Typo.body2">Old paint found on a stone house door.</MudText>
-                                <MudText Color="Color.Primary" Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
-                            </MudCardContent>
-                            <MudCardActions>
-                                <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
-                            </MudCardActions>
-                        </MudCard>
-                    </MudItem>
-                    <MudItem Class="mx-4 px-0">
-                        <MudCard>
-                            <MudCardMedia Image="images/placeholder-image.jpg" Height="200" />
-                            <MudCardContent>
-                                <MudText Color="Color.Primary" Typo="Typo.h5">Old Paint</MudText>
-                                <MudText Color="Color.Primary" Typo="Typo.body2">Old paint found on a stone house door.</MudText>
-                                <MudText Color="Color.Primary" Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
-                            </MudCardContent>
-                            <MudCardActions>
-                                <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
-                            </MudCardActions>
-                        </MudCard>
-                    </MudItem>
-                    <MudItem Class="mx-4 px-0">
-                        <MudCard>
-                            <MudCardMedia Image="images/placeholder-image.jpg" Height="200" />
-                            <MudCardContent>
-                                <MudText Color="Color.Primary" Typo="Typo.h5">Old Paint</MudText>
-                                <MudText Color="Color.Primary" Typo="Typo.body2">Old paint found on a stone house door.</MudText>
-                                <MudText Color="Color.Primary" Typo="Typo.body2">This photo was taken in a small village in Istra Croatia.</MudText>
-                            </MudCardContent>
-                            <MudCardActions>
-                                <MudButton Variant="Variant.Text" Color="Color.Primary">Learn More</MudButton>
-                            </MudCardActions>
-                        </MudCard>
-                    </MudItem>
-                </MudGrid>
-            </MudContainer>
         }
-
-
     </MudContainer>
 
 </MudContainer>
@@ -232,10 +173,4 @@
     _timelinePos = (size.Width <= _breakPointWidth) ? TimelinePosition.Left : TimelinePosition.Alternate;
 
     public async ValueTask DisposeAsync() => await ResizeService.Unsubscribe(_subscriptionId);
-
-    private void OnClick(MouseEventArgs args)
-    {
-        Snackbar.Add($"OnClick Invoked: {args.ToString()}");
-
-    }
 }
