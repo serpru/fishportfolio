@@ -75,8 +75,8 @@
 
 @code {
     MyTheme _myTheme = new();
-    Uri uri;
-    public List<BreadcrumbItem> _activeItems { get; set; } 
+    Uri? uri;
+    public List<BreadcrumbItem>? _activeItems { get; set; } 
 
     bool _drawerOpen = false;
 
@@ -95,12 +95,12 @@
     private List<BreadcrumbItem> _items = new List<BreadcrumbItem>
     {
         new BreadcrumbItem("Home", href: "/", icon: Icons.Material.Filled.Home),
-        new BreadcrumbItem("Projects", href: "/projects/", icon: Icons.Filled.AutoAwesomeMosaic),
-        new BreadcrumbItem("Pokemon of the day", href: "/pokemonoftheday/", disabled: true, icon: Icons.Filled.CatchingPokemon),
-        new BreadcrumbItem("Contact", href: "/counter/", icon: Icons.Filled.Email),
-        new BreadcrumbItem("Test", href: "/test/", icon: Icons.Filled.Accessible),
-        new BreadcrumbItem("Foka", href: "/test/foka/", icon: Icons.Filled.AirlineSeatFlat),
-        new BreadcrumbItem("Project Logo", href: "/projects/projectlogo/", icon: Icons.Filled.Book)
+        new BreadcrumbItem("Projects", href: "/projects", icon: Icons.Filled.AutoAwesomeMosaic),
+        new BreadcrumbItem("Pokemon of the day", href: "/pokemonoftheday", disabled: true, icon: Icons.Filled.CatchingPokemon),
+        new BreadcrumbItem("Contact", href: "/counter", icon: Icons.Filled.Email),
+        new BreadcrumbItem("Test", href: "/test", icon: Icons.Filled.Accessible),
+        new BreadcrumbItem("Foka", href: "/test/foka", icon: Icons.Filled.AirlineSeatFlat),
+        new BreadcrumbItem("Project Logo", href: "/projects/projectlogo", icon: Icons.Filled.Book)
     };
 }
 

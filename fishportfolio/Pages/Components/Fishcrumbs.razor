@@ -13,29 +13,34 @@
 
     private readonly List<BreadcrumbItem> _items = new List<BreadcrumbItem>
     {
-        new BreadcrumbItem("Home",                  href: "/",                          icon: Icons.Material.Filled.Home),
-        new BreadcrumbItem("Projects",              href: "/projects/",                 icon: Icons.Filled.AutoAwesomeMosaic),
-        new BreadcrumbItem("Pokemon of the day",    href: "/pokemonoftheday/",          icon: Icons.Filled.CatchingPokemon,     disabled: true),
-        new BreadcrumbItem("Contact",               href: "/counter/",                  icon: Icons.Filled.Email),
-        new BreadcrumbItem("Test",                  href: "/test/",                     icon: Icons.Filled.Accessible),
-        new BreadcrumbItem("Foka",                  href: "/test/foka/",                icon: Icons.Filled.AirlineSeatFlat),
-        new BreadcrumbItem("Logo project",          href: "/projects/projectlogo/",     icon: Icons.Filled.Book)
+        new BreadcrumbItem("Home",                  href: "/",                         icon: Icons.Material.Filled.Home),
+        new BreadcrumbItem("Projects",              href: "/projects",                 icon: Icons.Filled.AutoAwesomeMosaic),
+        new BreadcrumbItem("Pokemon of the day",    href: "/pokemonoftheday",          icon: Icons.Filled.CatchingPokemon),
+        new BreadcrumbItem("Contact",               href: "/counter",                  icon: Icons.Filled.Email),
+        new BreadcrumbItem("Test",                  href: "/test",                     icon: Icons.Filled.Accessible),
+        new BreadcrumbItem("Foka",                  href: "/test/foka",                icon: Icons.Filled.AirlineSeatFlat),
+        new BreadcrumbItem("Logo project",          href: "/projects/projectlogo",     icon: Icons.Filled.Book)
     };
 
     protected override async Task OnInitializedAsync()
     {
-        _activeItems.Add(_items.FirstOrDefault(x => x.Href.Equals("/")));
         var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
 
-        foreach (var segment in uri.Segments[1..])
+        if (uri.Segments.Length > 1)
         {
-            _activeItems.Add(_items.FirstOrDefault(x => x.Href.EndsWith(segment)));
+            for (int i = 0; i < uri.Segments.Length - 1; i++)
+            {
+                var segment = uri.Segments[i];
+                segment = segment.Remove(segment.Length - 1);
+                var breadcrumb = _items.FirstOrDefault(x => x.Href.EndsWith(segment));
+                var activeItem = new BreadcrumbItem(breadcrumb?.Text, breadcrumb?.Href, i == uri.Segments.Length - 1, breadcrumb?.Icon);
+                _activeItems.Add(activeItem);
+            }
         }
+        var lastBreadcrumb = _items.FirstOrDefault(x => x.Href.EndsWith(uri.Segments[uri.Segments.Length - 1]));
+        var lastActiveItem = new BreadcrumbItem(lastBreadcrumb?.Text, lastBreadcrumb?.Href, true, lastBreadcrumb?.Icon);
+        _activeItems.Add(lastActiveItem);
 
-        BreadcrumbItem _last = _activeItems[_activeItems.Count - 1];
-        _activeItems.RemoveAt(_activeItems.Count - 1);
-        BreadcrumbItem _newLast = new BreadcrumbItem(_last.Text, href: _last.Href, icon: _last.Icon, disabled: true);
-        _activeItems.Add(_newLast);
 
         await base.OnInitializedAsync();
     }

@@ -98,14 +98,14 @@
 
         var pokemonIndex = _date.DayOfYear;
 
-        MyPokemon myPokemon = new MyPokemon();
+        MyPokemon? myPokemon = new MyPokemon();
         do
         {
             try
             {
                 myPokemon.Pokemon = await pokeClient.GetResourceAsync<Pokemon>(pokemonIndex);
             }
-            catch (HttpRequestException ex) { myPokemon = null; }
+            catch (HttpRequestException _) { myPokemon = null; }
             if (myPokemon is not null)
             {
                 myPokemon.SpeciesCall = await pokeClient.GetResourceAsync(myPokemon.Pokemon.Species);
