@@ -56,15 +56,15 @@
                                 }
                             </ItemDot>
                             <ItemContent>
-                                <MudCard Outlined>
-                                    <MudCardMedia Image=@project.ImageLink Height="200" />
+                                <MudCard Outlined Class="border-top-0">
+                                    <MudCardMedia Image=@project.ImageLink Height="250" />
                                     <MudCardContent>
                                         <MudText Color="Color.Primary" Typo="Typo.h5">@project.Title</MudText>
                                         <MudText Color="Color.Primary" Typo="Typo.body2">@project.Description</MudText>
                                     </MudCardContent>
                                     <MudCardActions Class="justify-content-between">
                                         <MudButton Variant="Variant.Text" Color="Color.Primary" Href=@project.Href>Learn More</MudButton>
-                                        <div class="d-flex">
+                                        <div class="d-flex flex-wrap">
                                             @foreach (var chip in project.Chips)
                                             {
                                                 <MudChip Variant="Variant.Outlined" Color=@project.Color>@chip</MudChip>
@@ -97,20 +97,20 @@
                 @foreach (var project in _projects)
                 {
                     <MudItem Class="mx-4 px-0" xs="12" sm="3">
-                        <MudCard Outlined>
+                        <MudCard Outlined Class="border-top-0">
                             <MudCardMedia Image=@project.ImageLink Height="200" />
                             <MudCardContent>
                                 <MudText Color="Color.Primary" Typo="Typo.h5">@project.Title</MudText>
                                 <MudText Color="Color.Primary" Typo="Typo.body2">@project.Description</MudText>
                             </MudCardContent>
-                            <MudCardActions Class="justify-content-between">
-                                <MudButton Variant="Variant.Text" Color="Color.Primary" Href=@project.Href>Learn More</MudButton>
-                                <div class="d-flex">
+                            <MudCardActions Class="d-flex flex-column justify-content-between">
+                                <div class="d-flex flex-wrap">
                                     @foreach (var chip in project.Chips)
                                     {
                                         <MudChip Variant="Variant.Outlined" Color=@project.Color>@chip</MudChip>
                                     }
                                 </div>
+                                <MudButton Variant="Variant.Text" Color="Color.Primary" Href=@project.Href>Learn More</MudButton>
                             </MudCardActions>
                         </MudCard>
                     </MudItem>
@@ -127,7 +127,7 @@
     private List<ProjectViewModel> _projects = new List<ProjectViewModel>
     {
         new ProjectViewModel(new DateTime(2021,10,21),
-        "Tytuł", "Opis","/images/banner.jpg","/pokemonoftheday", Color.Primary, false, new List<String>{"C#","Python"}),
+        "LOGO DESIGN PROJECT", "Logo design for personal use","/images/logo_seal.svg","/projects/projectlogo/", Color.Primary, false, new List<String>{"Design","Vector graphics"}),
         new ProjectViewModel(),
         new ProjectViewModel(),
         new ProjectViewModel(),
