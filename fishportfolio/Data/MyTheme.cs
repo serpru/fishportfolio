@@ -6,19 +6,22 @@ namespace fishportfolio.Data
     {
         public MyTheme() :base()
         {
-            Palette.Primary = "#f4faffff";
-            Palette.Secondary = "#061713";
-            Palette.Tertiary = "#4f646f";
+            Palette.Primary = "#061713";            // Text, Select list
+            Palette.Secondary = "#f4faffff";
+            Palette.Tertiary = "#3aba9d";
             Palette.Background = "#3aba9d";
             Palette.AppbarBackground = "#061713";
-            Palette.DrawerText = "#e6ad87";
+            Palette.DrawerText = "#f4faffff";
             Palette.DrawerIcon = "#f4faffff";
             Palette.DrawerBackground = "#061713";
             Palette.Divider = "#f4faffff";
-            Palette.TextPrimary = "#535657";
+            Palette.TextPrimary = "#535657";            // Breadcrumbs, Select "#535657"
             Palette.TextSecondary = "#42f5f2";
             Palette.TextDisabled = "#3aba9d";
             Palette.ActionDisabled = "#8e9499";
+            //Palette.Surface = "#42f5f2";
+            //Palette.LinesInputs = "#f4faffff";          // Select Outline
+            // #2e957e
             Typography.H1.FontSize = "2rem";
             Typography.H2.FontSize = "1.3rem";
             
