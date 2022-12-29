@@ -23,6 +23,8 @@ namespace fishportfolio.Data
             //Palette.LinesInputs = "#f4faffff";          // Select Outline
             // #2e957e
             Typography.H1.FontSize = "2rem";
+            Typography.H1.FontWeight = 600;
+
             Typography.H2.FontSize = "1.3rem";
             
             Typography.H4.FontSize = "1.2rem";

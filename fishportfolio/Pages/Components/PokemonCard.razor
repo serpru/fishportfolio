@@ -1,7 +1,7 @@
 ﻿@using fishportfolio.Data
 <MudItem xs="12" sm="4">
     <MudCard Outlined=true Class="rounded-lg">
-        <MudImage Width="256" ObjectPosition="ObjectPosition.Center" Src=@PokemonData?.Pokemon?.Sprites.FrontDefault></MudImage>
+        <MudCardMedia Image="@PokemonData?.Pokemon?.Sprites.FrontDefault" Height="192"/>
         <MudCardContent>
             <MudText Class="fw-bold text-capitalize" Color="Color.Primary" Typo="Typo.h4">#@PokemonData?.Pokemon?.Id @PokemonData?.Pokemon?.Name</MudText>
             <MudText Class="text-capitalize" Color="Color.Primary" Typo="Typo.h5">@String.Join(" | " ,PokemonData.Pokemon?.Types.Select(x => x.Type.Name))</MudText>

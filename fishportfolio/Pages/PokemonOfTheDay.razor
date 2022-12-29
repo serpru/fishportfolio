@@ -6,74 +6,73 @@
 @inject NavigationManager NavigationManager
 
 <PageTitle>Pokemon of the day</PageTitle>
-<MudPaper Class="px-6 py-4 mx-6 mb-6" Elevation="2" MinWidth="60vw" MaxWidth="800px">
-    <Fishcrumbs />
-    <MudText Color="Color.Primary" Align="Align.Left" Typo="Typo.h1">Pokemon of the day</MudText>
-    <MudText Color="Color.Primary" Align="Align.Left" Typo="Typo.body1"></MudText>
-    <MudText Color="Color.Primary" Align="Align.Left" Typo="Typo.body1">Today is @_date.Date.ToShortDateString(). Today's pokemon:</MudText>
+<MudContainer MaxWidth="MaxWidth.Large">
+    <MudPaper Class="px-8 py-4 my-3" Elevation="2">
+        <Fishcrumbs />
+        <MudText Color="Color.Primary" Align="Align.Left" Typo="Typo.h1">Pokemon of the day</MudText>
+        <MudText Color="Color.Primary" Align="Align.Left" Typo="Typo.body1"></MudText>
+        <MudText Color="Color.Primary" Align="Align.Left" Typo="Typo.body1">Today is @_date.Date.ToShortDateString(). Today's pokemon:</MudText>
 
-    <MudGrid Spacing="2" Justify="Justify.Center">
-        @if (isContentLoaded)
-        {
-            @foreach (MyPokemon pokemon in listOfPokemon)
+        <MudGrid Spacing="2" Justify="Justify.Center">
+            @if (isContentLoaded)
             {
-                <PokemonCard PokemonData="pokemon" />
+                @foreach (MyPokemon pokemon in listOfPokemon)
+                {
+                    <PokemonCard PokemonData="pokemon" />
+                }
             }
-        }
-        else
-        {
+            else
+            {
 
-            <MudItem xs="12" sm="4">
-                <MudCard>
-                    <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
-                    <MudCardContent>
-                        <MudSkeleton Width="60%" Height="32px;" />
-                        <MudSkeleton Width="25%" Height="24px;" />
-                        <MudSkeleton Width="50%" Height="24px;" />
-                        <MudSkeleton Width="80%" />
-                        <MudSkeleton Width="100%" />
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudSkeleton Width="105px" Height="40px" Class="ml-2" />
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-            <MudItem xs="12" sm="4">
-                <MudCard>
-                    <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
-                    <MudCardContent>
-                        <MudSkeleton Width="60%" Height="32px;" />
-                        <MudSkeleton Width="25%" Height="24px;" />
-                        <MudSkeleton Width="50%" Height="24px;" />
-                        <MudSkeleton Width="80%" />
-                        <MudSkeleton Width="100%" />
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudSkeleton Width="105px" Height="40px" Class="ml-2" />
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-            <MudItem xs="12" sm="4">
-                <MudCard>
-                    <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
-                    <MudCardContent>
-                        <MudSkeleton Width="60%" Height="32px;" />
-                        <MudSkeleton Width="25%" Height="24px;" />
-                        <MudSkeleton Width="50%" Height="24px;" />
-                        <MudSkeleton Width="80%" />
-                        <MudSkeleton Width="100%" />
-                    </MudCardContent>
-                    <MudCardActions>
-                        <MudSkeleton Width="105px" Height="40px" Class="ml-2" />
-                    </MudCardActions>
-                </MudCard>
-            </MudItem>
-        }
-    </MudGrid>
-
-
-
-</MudPaper>
+                <MudItem xs="12" sm="4">
+                    <MudCard>
+                        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
+                        <MudCardContent>
+                            <MudSkeleton Width="60%" Height="32px;" />
+                            <MudSkeleton Width="25%" Height="24px;" />
+                            <MudSkeleton Width="50%" Height="24px;" />
+                            <MudSkeleton Width="80%" />
+                            <MudSkeleton Width="100%" />
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudSkeleton Width="105px" Height="40px" Class="ml-2" />
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+                <MudItem xs="12" sm="4">
+                    <MudCard>
+                        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
+                        <MudCardContent>
+                            <MudSkeleton Width="60%" Height="32px;" />
+                            <MudSkeleton Width="25%" Height="24px;" />
+                            <MudSkeleton Width="50%" Height="24px;" />
+                            <MudSkeleton Width="80%" />
+                            <MudSkeleton Width="100%" />
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudSkeleton Width="105px" Height="40px" Class="ml-2" />
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+                <MudItem xs="12" sm="4">
+                    <MudCard>
+                        <MudSkeleton SkeletonType="SkeletonType.Rectangle" Height="200px" />
+                        <MudCardContent>
+                            <MudSkeleton Width="60%" Height="32px;" />
+                            <MudSkeleton Width="25%" Height="24px;" />
+                            <MudSkeleton Width="50%" Height="24px;" />
+                            <MudSkeleton Width="80%" />
+                            <MudSkeleton Width="100%" />
+                        </MudCardContent>
+                        <MudCardActions>
+                            <MudSkeleton Width="105px" Height="40px" Class="ml-2" />
+                        </MudCardActions>
+                    </MudCard>
+                </MudItem>
+            }
+        </MudGrid>
+    </MudPaper>
+</MudContainer>
 
 @code {
     private DateTime _date;
