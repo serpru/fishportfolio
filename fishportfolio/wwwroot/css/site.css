@@ -5,3 +5,8 @@
 a:hover {
     color: inherit;
 }
+
+.header-buttons
+{
+    color: var(--mud-palette-white);
+}
