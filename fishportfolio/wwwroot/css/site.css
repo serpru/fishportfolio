@@ -10,3 +10,7 @@ a:hover {
 {
     color: var(--mud-palette-white);
 }
+
+.breadcrumbs {
+    color: var(--mud-palette-action-default);
+}

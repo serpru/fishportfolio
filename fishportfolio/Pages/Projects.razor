@@ -26,7 +26,7 @@
             <MudContainer MaxWidth="MaxWidth.False" Class="my-3 d-flex justify-content-end">
                 <MudContainer MaxWidth="MaxWidth.ExtraSmall">
                     <MudPaper>
-                        <MudSelect Class="ma-0 pa-0" @bind-Value=isTimeline T="bool" Variant=Variant.Outlined Adornment=Adornment.End AdornmentColor=Color.Primary AnchorOrigin="Origin.BottomCenter">
+                        <MudSelect Class="ma-0 pa-0" @bind-Value=isTimeline T="bool" Variant=Variant.Outlined Adornment=Adornment.End AnchorOrigin="Origin.BottomCenter">
                             <MudSelectItem Value="true">Timeline</MudSelectItem>
                             <MudSelectItem Value="false">Grid</MudSelectItem>
                         </MudSelect>
@@ -42,7 +42,7 @@
                     <MudTimeline TimelinePosition="@_timelinePos">
                         @foreach (var project in _projects)
                         {
-                            <MudTimelineItem Size="Size.Medium" Color="Color.Primary">
+                            <MudTimelineItem Size="Size.Medium" Color="Color.Primary" Elevation="0">
                                 <ItemDot>
                                     @if (project.IsDone)
                                     {
@@ -94,8 +94,8 @@
                             <MudCard Outlined>
                                 <MudCardMedia Image=@project.ImageLink Height="200" />
                                 <MudCardContent>
-                                    <MudText Color="Color.Primary" Typo="Typo.h5">@project.Title</MudText>
-                                    <MudText Color="Color.Primary" Typo="Typo.body2">@project.Description</MudText>
+                                    <MudText Typo="Typo.h5">@project.Title</MudText>
+                                    <MudText Typo="Typo.body2">@project.Description</MudText>
                                 </MudCardContent>
                                 <MudCardActions Class="d-flex flex-column justify-content-between">
                                     <div class="d-flex flex-wrap">
@@ -124,7 +124,7 @@
     private List<ProjectViewModel> _projects = new List<ProjectViewModel>
     {
         new ProjectViewModel(new DateTime(2021,10,21),
-        "LOGO DESIGN PROJECT", "Logo design for personal use","/images/logo_seal.svg","/projects/projectlogo", Color.Primary, false, new List<String>{"Design","Vector graphics"}),
+        "LOGO DESIGN PROJECT", "Logo design for personal use","/images/logo_seal2.svg","/projects/projectlogo", Color.Primary, false, new List<String>{"Design","Vector graphics"}),
         new ProjectViewModel(),
         new ProjectViewModel(),
         new ProjectViewModel(),

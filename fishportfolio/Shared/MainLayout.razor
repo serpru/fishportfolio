@@ -9,15 +9,15 @@
 
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
         <MudText Typo="Typo.h5" Class="mx-3">Sav.io</MudText>
         <MudSpacer />
-        <MudIconButton @onclick="ChangeMode" Icon="@modeIcon" Color="Color.Inherit" Class="ma-4" T="bool" Label="Toggle Light/Dark Mode" />
-        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Color="Color.Inherit" Edge="Edge.End" />
+        <MudIconButton @onclick="ChangeMode" Icon="@modeIcon" Class="ma-4" T="bool" Label="Toggle Light/Dark Mode" />
+        <MudIconButton Icon="@Icons.Material.Filled.MoreVert" Edge="Edge.End" />
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         @*NavMenu*@
-        <MudNavMenu Color="Color.Secondary">
+        <MudNavMenu>
             @foreach (var navlink in _items)
             {
                 <MudNavLink Match="NavLinkMatch.All" Icon="@navlink.Icon" Href="@navlink.Href">@navlink.Text</MudNavLink>
@@ -35,12 +35,12 @@
             </MudPaper>
         </MudContainer>
 
-        <MudText Class="my-3" Color="Color.Tertiary" Align="Align.Center" Typo="Typo.h1">Greetings, traveler!</MudText>
+        <MudText Class="my-3" Color="Color.Primary" Align="Align.Center" Typo="Typo.h1">Greetings, traveler!</MudText>
 
         @*This should be only visible on desktop*@
         <MudHidden Breakpoint="Breakpoint.MdAndDown">
             <MudContainer Class="d-flex justify-content-center  gap-4">
-                <MudButtonGroup Color="Color.Tertiary" Variant="Variant.Filled" DisableElevation>
+                <MudButtonGroup Color="Color.Primary" Variant="Variant.Filled" DisableElevation>
                     <MudButton StartIcon="@Icons.Material.Filled.Home">Home</MudButton>
                     <MudButton StartIcon="@Icons.Filled.AutoAwesomeMosaic">Projects</MudButton>
                     <MudButton StartIcon="@Icons.Filled.Email">Contact</MudButton>
@@ -57,7 +57,7 @@
             <MudContainer Class="ma-0 pa-0" MaxWidth="MaxWidth.False">
                 <MudDivider />
                 <MudContainer Fixed=true>
-                    <MudText Color="Color.Secondary" Align="Align.Center" Typo="Typo.body2">Copyright XOXO</MudText>
+                    <MudText Align="Align.Center" Typo="Typo.body2">Copyright XOXO</MudText>
                 </MudContainer>
             </MudContainer>
         </MudContainer>
